@@ -1,21 +1,16 @@
 function mincost(arr)
 { 
-	arr=arr.sort();
-	let arr1=[];
-	let sum=0;
-	arr.forEach((item)=>{
-		sum+=item;
-		arr1.push(sum);
-	})
-	 sum=0;
-	arr1.forEach((item,index)=>{
-		if(index==0){
-			continue;
-		}else{
-		sum+=item;	
-		}
-	})
-	return sum;
+	if (arr.length <= 1) return 0;
+
+    let totalCost = 0;
+    while (arr.length > 1) {
+        arr.sort((a, b) => a - b);
+        const cost = arr[0] + arr[1];
+        totalCost += cost;
+        arr.splice(0, 2, cost);
+    }
+
+    return totalCost;
 }
 
 module.exports=mincost;
